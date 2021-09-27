@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.apisibre2.model.ContatoModel;
 import br.com.apisibre2.serviceImpl.ContatoServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@CrossOrigin(origins="*")
 @RestController
+@RequestMapping(value="/api")
+@Api(value="API REST contato")
 public class ContatoController {
 
 	@Autowired
@@ -30,17 +36,20 @@ public class ContatoController {
 	private ContatoServiceImpl cads;
 
 	@GetMapping("/contato")
+	@ApiOperation(value="Retorna uma lista de Contatos")
 	public List<ContatoModel> findAll() {
 		return cads.listAll();
 	}
 
 	@GetMapping(path = "/{id}")
+	@ApiOperation(value="Encontra os contatos pelo id")
 	public ResponseEntity<ContatoModel> listaPorId(@PathVariable(name = "id") Long id) {
 		ContatoModel cad = cads.getId(id);
 		return ResponseEntity.ok(cad);
 	}
 
 	@PostMapping("/contato")
+	@ApiOperation(value="Adiciona contatos a lista")
 	public ResponseEntity savaCotato(@RequestBody ContatoModel cad) {
 		this.cads.saveOrUpdate(cad);
 		sendMail();
@@ -48,6 +57,7 @@ public class ContatoController {
 	}
 
 	@PutMapping(path = "/{id}")
+	@ApiOperation(value="Faz o update dos contatos")
 	public ResponseEntity<Boolean> cadastra(@PathVariable(name = "id") Long id, @RequestBody ContatoModel cm,
 			BindingResult result) {
 		if (result.hasErrors()) {
@@ -61,6 +71,7 @@ public class ContatoController {
 	}
 
 	@RequestMapping(path = "/email-send", method = RequestMethod.GET)
+	@ApiOperation(value="Envia emails aos contatos")
 	public String sendMail() {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setText("Alguem entrou em contato no site! Glória a Deus sempre!");
