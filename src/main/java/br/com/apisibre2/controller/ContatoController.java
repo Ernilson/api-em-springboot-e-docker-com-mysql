@@ -23,10 +23,12 @@ import br.com.apisibre2.serviceImpl.ContatoServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins="*")
+
+
+//@RequestMapping(value="/api")
+//@Api(value="API REST contato")
 @RestController
-@RequestMapping(value="/api")
-@Api(value="API REST contato")
+@CrossOrigin(origins="*")
 public class ContatoController {
 
 	@Autowired
