@@ -11,20 +11,20 @@ public class ContatoModel {
     private Long id_c;
     private String nome;    
     private String email;
-    private String assuntoMsg;
-    private String conteudoMsg;
+    private String assunto_Msg;
+    private String conteudo_Msg;
     
     public ContatoModel() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ContatoModel(Long id_c, String nome, String email, String assuntoMsg, String conteudoMsg) {
+	public ContatoModel(Long id_c, String nome, String email, String assunto_Msg, String conteudo_Msg) {
 		super();
 		this.id_c = id_c;
 		this.nome = nome;
 		this.email = email;
-		this.assuntoMsg = assuntoMsg;
-		this.conteudoMsg = conteudoMsg;
+		this.assunto_Msg = assunto_Msg;
+		this.conteudo_Msg = conteudo_Msg;
 	}
 
 	public Long getId_c() {
@@ -52,19 +52,19 @@ public class ContatoModel {
 	}
 
 	public String getAssuntoMsg() {
-		return assuntoMsg;
+		return assunto_Msg;
 	}
 
 	public void setAssuntoMsg(String assuntoMsg) {
-		this.assuntoMsg = assuntoMsg;
+		this.assunto_Msg = assuntoMsg;
 	}
 
 	public String getConteudoMsg() {
-		return conteudoMsg;
+		return conteudo_Msg;
 	}
 
 	public void setConteudoMsg(String conteudoMsg) {
-		this.conteudoMsg = conteudoMsg;
+		this.conteudo_Msg = conteudoMsg;
 	}
 
 	@Override
@@ -94,8 +94,8 @@ public class ContatoModel {
 
 	@Override
 	public String toString() {
-		return "ContatoModel [id_c=" + id_c + ", nome=" + nome + ", email=" + email + ", assuntoMsg=" + assuntoMsg
-				+ ", conteudoMsg=" + conteudoMsg + "]";
+		return "ContatoModel [id_c=" + id_c + ", nome=" + nome + ", email=" + email + ", assuntoMsg=" + assunto_Msg
+				+ ", conteudoMsg=" + conteudo_Msg + "]";
 	}	
     
     

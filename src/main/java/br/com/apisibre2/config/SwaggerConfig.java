@@ -1,5 +1,7 @@
 package br.com.apisibre2.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,29 +22,14 @@ import java.util.ArrayList;
 public class SwaggerConfig {
 	
 	@Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.apisibre2"))
-                .paths(regex("/api.*"))
-                .build()
-                .apiInfo(metaInfo());
+    public OpenAPI productApi() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("apisibre2")
+                        .description("api para site da sibre")
+                        .version("1.0.0"));
     }
-
-    private ApiInfo metaInfo() {
-
-        ApiInfo apiInfo = new ApiInfo(
-                "Produtos API REST",
-                "API REST de cadastro de contatos.",
-                "1.0",
-                "Terms of Service",
-                new Contact("Ernilson Souza", "https://www.youtube.com/",
-                        "ernilson25@gmail.com"),
-                "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
-        );
-
-        return apiInfo;
-    }
-	
+        //--> http://localhost:8080/swagger-ui/index.html
 }
+	
+
